@@ -71,13 +71,18 @@ document.querySelectorAll('.fade-up').forEach(function (el) { io.observe(el); })
     caps.forEach(function (c, k) { c.classList.toggle('active', k === n); });
     dots.forEach(function (d, k) { d.classList.toggle('active', k === n); });
     var v = slides[n].querySelector('video');
-    if (v) { try { v.currentTime = 0; v.play(); } catch (e) {} }
+    if (v) { try { v.currentTime = 0; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) {} }
     i = n;
   }
   function next() { show((i + 1) % slides.length); }
   function start() { timer = setInterval(next, DURATION); }
   dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); clearInterval(timer); start(); }); });
   show(0); start();
+  // Fallback: some mobile browsers block programmatic autoplay until the first touch
+  function kick() { var a = document.querySelector('.slide.active video'); if (a) { var p = a.play(); if (p && p.catch) p.catch(function () {}); } }
+  ['touchstart', 'click', 'scroll'].forEach(function (evt) {
+    window.addEventListener(evt, kick, { once: true, passive: true });
+  });
 })();
 
 // ─── Contact form (demo) ───
