@@ -1,33 +1,6 @@
-// ─── Theme (dark / light) ───
+// ─── Brand taglines ───
 (function () {
-  var root = document.documentElement;
-  try {
-    var p = (location.search + location.hash).toLowerCase();
-    var forced = /light/.test(p) ? 'light' : (/dark/.test(p) ? 'dark' : null);
-    var saved = forced || localStorage.getItem('at-theme') || 'light';
-    root.setAttribute('data-theme', saved);
-    if (forced) { try { localStorage.setItem('at-theme', forced); } catch (e) {} }
-  } catch (e) {}
-  function current() { return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
-  var SUN = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>';
-  var MOON = '<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>';
-  function iconFor() { return current() === 'light' ? MOON : SUN; }
-  function makeToggle() {
-    var b = document.createElement('button');
-    b.className = 'theme-toggle'; b.type = 'button';
-    b.setAttribute('aria-label', 'Toggle light / dark theme');
-    b.innerHTML = iconFor();
-    b.addEventListener('click', function () {
-      var next = current() === 'light' ? 'dark' : 'light';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('at-theme', next); } catch (e) {}
-      document.querySelectorAll('.theme-toggle').forEach(function (t) { t.innerHTML = iconFor(); });
-    });
-    return b;
-  }
   document.addEventListener('DOMContentLoaded', function () {
-    var cta = document.querySelector('.nav-links .nav-cta');
-    if (cta) cta.parentNode.insertBefore(makeToggle(), cta);
     // Nav tagline
     var logo = document.querySelector('.nav-logo');
     if (logo && !logo.querySelector('.nav-tagline')) {

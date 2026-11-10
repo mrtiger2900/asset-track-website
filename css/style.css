@@ -17,27 +17,7 @@
   --nav-h: 72px;
   --gradient-red: linear-gradient(135deg, #E31E24, #ff5a4d);
 
-  /* Semantic tokens — DARK (default) */
-  --bg: #0b0b13;
-  --bg-alt: #12121d;
-  --bg-grey: #15172a;
-  --surface: rgba(255,255,255,0.025);
-  --surface-2: rgba(255,255,255,0.05);
-  --border: rgba(255,255,255,0.07);
-  --border-2: rgba(255,255,255,0.16);
-  --text: #ffffff;
-  --text-soft: #b2bacb;
-  --text-muted: #8892a8;
-  --nav-bg: rgba(11,11,19,0.7);
-  --nav-bg-2: rgba(11,11,19,0.95);
-  --input-bg: rgba(255,255,255,0.05);
-  --card-shadow: none;
-  --media-shadow: 0 24px 70px rgba(0,0,0,0.5);
-  --hero-scrim: rgba(11,11,19,0);
-}
-
-/* Semantic tokens — LIGHT */
-:root[data-theme="light"] {
+  /* Semantic tokens — LIGHT (only theme) */
   --bg: #f4f6fb;
   --bg-alt: #ffffff;
   --bg-grey: #eceff7;
@@ -132,7 +112,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02
 .page-hero { position: relative; padding: calc(var(--nav-h) + 5rem) 2rem 5rem; overflow: hidden;
   border-bottom: 1px solid var(--border); }
 .page-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.18; z-index: 0; }
-:root[data-theme="light"] .page-hero-bg { opacity: 0.12; }
+.page-hero-bg { opacity: 0.12; }
 .page-hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: var(--hero-scrim); }
 .page-hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
   background: radial-gradient(1000px 500px at 70% -10%, rgba(227,30,36,0.14), transparent 60%); }
@@ -181,7 +161,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02
 .pill { display: inline-block; background: rgba(227,30,36,0.12); color: #ff6b6b;
   padding: 0.25rem 0.7rem; border-radius: 6px; font-size: 0.7rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
-:root[data-theme="light"] .pill { color: var(--red-dark); }
+.pill { color: var(--red-dark); }
 .ticklist { list-style: none; }
 .ticklist li { padding: 0.45rem 0; display: flex; gap: 0.7rem; color: var(--text-soft);
   font-size: 0.97rem; align-items: flex-start; }
@@ -196,7 +176,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02
 .feat p { font-size: 0.9rem; color: var(--text-muted); }
 .tag-dev { background: rgba(227,30,36,0.14); color: #ff7a7a; font-size: 0.62rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em; padding: 0.15rem 0.5rem; border-radius: 5px; }
-:root[data-theme="light"] .tag-dev { color: var(--red-dark); }
+.tag-dev { color: var(--red-dark); }
 
 /* ─── STATS ─── */
 .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; text-align: center; }
