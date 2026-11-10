@@ -65,13 +65,32 @@ document.querySelectorAll('.fade-up').forEach(function (el) { io.observe(el); })
   document.addEventListener('visibilitychange', function () { if (!document.hidden) playAll(); });
 })();
 
-// ─── Contact form (demo) ───
+// ─── Contact form → /api/inquiry ───
 document.querySelectorAll('form[data-contact]').forEach(function (f) {
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     var btn = f.querySelector('.form-submit');
-    btn.textContent = 'Message Sent  ✓'; btn.style.background = '#16a34a';
-    f.querySelectorAll('input,textarea,select').forEach(function (el) { el.value = ''; });
+    var original = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    var data = {};
+    f.querySelectorAll('input,textarea,select').forEach(function (el) {
+      if (el.name) data[el.name] = el.value;
+    });
+    fetch('/api/inquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('bad status');
+      btn.textContent = 'Message Sent  ✓';
+      btn.style.background = '#16a34a';
+      f.querySelectorAll('input,textarea,select').forEach(function (el) { el.value = ''; });
+    }).catch(function () {
+      btn.disabled = false;
+      btn.textContent = 'Something went wrong — try again';
+      btn.style.background = '#b91c1c';
+      setTimeout(function () { btn.textContent = original; btn.style.background = ''; }, 4000);
+    });
   });
 });
 

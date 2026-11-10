@@ -263,11 +263,11 @@
       <div class="form-card fade-up">
         <h3>Request a Quote</h3>
         <form data-contact>
-          <div class="fg"><input type="text" placeholder="Company Name" required></div>
-          <div class="fg"><input type="text" placeholder="Contact Person" required></div>
-          <div class="fg"><input type="tel" placeholder="Phone Number" required></div>
-          <div class="fg"><input type="email" placeholder="Email Address" required></div>
-          <div class="fg"><select>
+          <div class="fg"><input type="text" name="company" placeholder="Company Name" required></div>
+          <div class="fg"><input type="text" name="name" placeholder="Contact Person" required></div>
+          <div class="fg"><input type="tel" name="phone" placeholder="Phone Number" required></div>
+          <div class="fg"><input type="email" name="email" placeholder="Email Address" required></div>
+          <div class="fg"><select name="interest">
             <option value="">What are you interested in?</option>
             <option>GPS Vehicle Tracking</option>
             <option>AI Dash Cameras</option>
@@ -277,8 +277,8 @@
             <option>Trailer Tracking</option>
             <option>Full Fleet Solution</option>
           </select></div>
-          <div class="fg"><input type="number" placeholder="Fleet Size (number of vehicles)" min="1"></div>
-          <div class="fg"><textarea placeholder="Tell us about your fleet and what you need..."></textarea></div>
+          <div class="fg"><input type="number" name="fleet" placeholder="Fleet Size (number of vehicles)" min="1"></div>
+          <div class="fg"><textarea name="message" placeholder="Tell us about your fleet and what you need..."></textarea></div>
           <button type="submit" class="form-submit">Send Enquiry</button>
         </form>
       </div>
